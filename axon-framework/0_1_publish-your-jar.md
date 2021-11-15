@@ -2,7 +2,7 @@
 title: Publish your shared library
 description: Packaging and Publish your jar to maven Central
 published: true
-date: 2021-11-15T19:43:38.865Z
+date: 2021-11-15T19:49:24.311Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T19:00:10.866Z
@@ -142,17 +142,6 @@ signing {
 2. We added 'maven-publish' and 'signing' plugins.
 3. We added the whole publishing section, which specified the publishing repository, and credentials info.
 
-The ~/.gradle/gradle.properties are like below:
-```properties
-signing.keyId=your-key-id
-signing.password=your-signing-password
-signing.secretKeyRingFile=C:\\Users\\wujun\\.gnupg\\secring.key
-
-ossrhUsername=sonatype-username
-ossrhPassword=sonatype-password
-ossrhStagingProfileId=sonatype-staging-profile
-```
-
 ## II. Publish to mavenLocal
 We can publish the jar to mavenLocal for some integration test.
 There's a gradle task named publishToMavenLocal to do that.
@@ -193,7 +182,7 @@ Note, You should create your TXT record with empty Hostname field.
 And after created you might need to reopen the issue for further changes taken place.
 
 ### 3) GPG key
-Generate a gpg key pair if not yet:
+#### 1. Generate a gpg key pair if not yet:
 ```bash
 gpg2 --full-generate-key
 ```
@@ -223,23 +212,47 @@ pub   rsa4096 2021-11-15 [SC]
 uid   Juntao Wu (wujuntaocn) <wujuntaocn@outlook.com>
 sub   rsa4096 2021-11-15 [E]
 ```
-Export the public parts into a text file:
+#### 2. Export the public parts into a text file:
 ```bash
 gpg2 --armor --export 8EE94F34CE9218CC8393020F596526528E1AD2A8 > public.pgp
 ```
 
-Upload the public key to the well known pgp sites such as:
+#### 3. Upload the public key to the well known pgp sites such as:
 [https://keys.openpgp.org](https://keys.openpgp.org)
 [https://keyserver.ubuntu.com](https://keyserver.ubuntu.com)
 
-Export the secring into a file:
+#### 4. Export the secring into a file:
 ```bash
 gpg2 --export-secret-keys -o secring.key
+```
+
+#### 5. List the 8 chars short public key id with:
+```bash
+gpg2 --list-keys --keyid-format short
+
+# which produces below content:
+/home/wujuntao/.gnupg/pubring.kbx
+---------------------------------
+pub   rsa4096/8E1AD2A8 2021-11-15 [SC]
+      8EE94F34CE9218CC8393020F596526528E1AD2A8
+uid         [ultimate] Juntao Wu (wujuntaocn) <wujuntaocn@outlook.com>
+sub   rsa4096/F2093848 2021-11-15 [E]
 ```
 
 ### 4) Modify ~/.gradle/gradle.properties for correct credentials
 
 Create or update your global gradle.properties file rather than the project local properties. This is because we often add the gradle.properties into source control, which is risky for credentials.
+
+The ~/.gradle/gradle.properties are like below:
+```properties
+signing.keyId=your-8-char-key-id
+signing.password=your-signing-password
+signing.secretKeyRingFile=C:\\Users\\wujun\\.gnupg\\secring.key
+
+ossrhUsername=sonatype-username
+ossrhPassword=sonatype-password
+ossrhStagingProfileId=sonatype-staging-profile
+```
 
 ### 5) Publish and check availabilities
 
