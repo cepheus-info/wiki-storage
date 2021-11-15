@@ -2,7 +2,7 @@
 title: Publish your shared library
 description: Packaging and Publish your jar to maven Central
 published: true
-date: 2021-11-15T19:02:25.349Z
+date: 2021-11-15T19:42:20.347Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T19:00:10.866Z
@@ -220,6 +220,11 @@ gpg2 --armor --export 8EE94F34CE9218CC8393020F596526528E1AD2A8 > public.pgp
 Upload the public key to the well known pgp sites such as:
 [https://keys.openpgp.org](https://keys.openpgp.org)
 [https://keyserver.ubuntu.com](https://keyserver.ubuntu.com)
+
+Export the secring into a file:
+```bash
+gpg2 --export-secret-keys -o secring.key
+```
 
 ### 4) Modify ~/.gradle/gradle.properties for correct credentials
 
