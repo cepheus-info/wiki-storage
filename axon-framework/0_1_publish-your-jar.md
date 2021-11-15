@@ -2,7 +2,7 @@
 title: Publish your shared library
 description: Packaging and Publish your jar to maven Central
 published: true
-date: 2021-11-15T19:42:20.347Z
+date: 2021-11-15T19:43:38.865Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T19:00:10.866Z
@@ -125,6 +125,17 @@ tasks.withType(PublishToMavenRepository) {
         }
     }
 }
+
+signing {
+    if (project.findProperty('signing.keyId') && project.findProperty('signing.password') && project.findProperty('signing.secretKeyRingFile')) {
+        sign configurations.archives
+
+        /* Uncomment this if you use shadow in your build process */
+        // sign configurations.shadow
+    } else {
+        throw new ConfigurationException('No signing info found.')
+    }
+}
 ```
 
 1. We change id 'java' to 'java-library' in the plugins section.
@@ -135,7 +146,7 @@ The ~/.gradle/gradle.properties are like below:
 ```properties
 signing.keyId=your-key-id
 signing.password=your-signing-password
-signing.secretKeyRingFile=C:\\Users\\wujun\\.gnupg\\private-keys-v1.d\\some-words.key
+signing.secretKeyRingFile=C:\\Users\\wujun\\.gnupg\\secring.key
 
 ossrhUsername=sonatype-username
 ossrhPassword=sonatype-password
