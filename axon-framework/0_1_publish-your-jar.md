@@ -2,7 +2,7 @@
 title: Publish your shared library
 description: Packaging and Publish your jar to maven Central
 published: true
-date: 2021-11-15T19:49:24.311Z
+date: 2021-11-16T11:51:35.562Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T19:00:10.866Z
@@ -17,44 +17,63 @@ We created a library named cepheus_axon_extension in the following repository: [
 
 ### Project Structure
 ```
-├─.gradle
-├─gradle
-│  └─wrapper
-└─src
-    ├─commonMain
-    │  ├─kotlin
-    │  └─resources
-    ├─commonTest
-    │  ├─kotlin
-    │  └─resources
-    ├─jvmMain
-    │  ├─kotlin
-    │  │  └─info
-    │  │      └─cepheus
-    │  │          └─axon
-    │  │              └─infrastructure
-    │  │                  ├─adapter
-    │  │                  ├─boundary
-    │  │                  │  ├─command
-    │  │                  │  └─query
-    │  │                  ├─database
-    │  │                  └─transaction
-    │  │                      └─jta
-    │  └─resources
-    │      └─META-INF
-    ├─jvmTest
-    │  ├─kotlin
-    │  └─resources
-    ├─nativeMain
-    │  ├─kotlin
-    │  └─resources
-    └─nativeTest
-        ├─kotlin
-        └─resources
+.
+├── build.gradle
+├── gradle
+│   └── wrapper
+│       └── gradle-wrapper.properties
+├── gradle.properties
+├── gradle.properties.sample
+├── LICENSE
+├── README.md
+├── settings.gradle
+└── src
+    ├── main
+    │   ├── kotlin
+    │   │   └── info
+    │   │       └── cepheus
+    │   └── resources
+    │       └── META-INF
+    │           └── beans.xml
+    └── test
+        ├── kotlin
+        └── resources
 ```
 ### How to?
-The project was created with kotlin template, but it's nothing more than a normal java project which targeted to multiple platform.
-![screenshot_2021-11-16_024139.png](/axon-framework/screenshot_2021-11-16_024139.png)
+The project was created with kotlin template, it's similar to a normal java library project.
+```powershell
+PS D:\Repos-Library> mkdir showcase_library
+
+    Directory: D:\Repos-Library
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2021-11-16   7:35 PM                showcase_library
+
+PS D:\Repos-Library> cd .\showcase_library\
+PS D:\Repos-Library\showcase_library> gradle init
+
+Select type of project to generate:
+  1: basic
+  2: application
+  3: library
+  4: Gradle plugin
+Enter selection (default: basic) [1..4] 3
+
+Select implementation language:
+  1: C++
+  2: Groovy
+  3: Java
+  4: Kotlin
+  5: Scala
+  6: Swift
+Enter selection (default: Java) [1..6] 4
+
+Select build script DSL:
+  1: Groovy
+  2: Kotlin
+Enter selection (default: Kotlin) [1..2] 1
+```
 
 The build.gradle was as below:
 ```groovy
@@ -62,9 +81,10 @@ import javax.naming.ConfigurationException
 
 plugins {
     id 'java-library'
-    id 'org.jetbrains.kotlin.multiplatform' version '1.5.31'
+    id 'org.jetbrains.kotlin.jvm' version '1.5.31'
     id 'maven-publish'
     id 'signing'
+    id 'org.jetbrains.dokka' version '1.5.31'
 }
 
 group = 'info.cepheus'
@@ -76,11 +96,8 @@ repositories {
 }
 
 dependencies {
+    implementation enforcedPlatform("${axonPlatformGroupId}:${axonPlatformArtifactId}:${axonPlatformVersion}")
     // omit dependencies...
-}
-
-kotlin {
-    // omit targets
 }
 
 ext {
@@ -92,18 +109,71 @@ ext {
     it.ossrhStagingProfileId = project.findProperty('ossrhStagingProfileId')
 }
 
+task javadocJar(type: org.gradle.jvm.tasks.Jar) {
+    group 'documentation'
+    dependsOn dokkaHtml
+    archiveClassifier.set('javadoc')
+    from dokkaHtml.outputDirectory
+}
+
 publishing {
     publications {
         maven(MavenPublication) {
             groupId 'info.cepheus'
             artifactId 'cepheus_axon_extension'
             version '0.0.1'
+
+            File pomAscFile = null
+            pom {
+                name = ''
+                description = ''
+                url = 'https://github.com/{organization}/{repo}'
+                organization {
+                    name = 'cepheus.info'
+                    url = 'https://github.com/{organization}'
+                }
+                issueManagement {
+                    system = 'GitHub'
+                    url = 'https://github.com/{organization}/{repo}/issues'
+                }
+                licenses {
+                    license {
+                        name = 'MIT License'
+                        url = 'https://github.com/{organization}/{repo}/blob/master/LICENSE'
+                        distribution = 'repo'
+                    }
+                }
+                developers {
+                    developer {
+                        id = ''
+                        name = ''
+                        email = ''
+                    }
+                }
+                scm {
+                    url = 'https://github.com/{organization}/{repo}'
+                    connection = 'scm:git:git://github.com/{organization}/{repo}.git'
+                    developerConnection = 'scm:git:ssh://git@github.com:{organization}/{repo}.git'
+                }
+            }
+
+            pom.withXml {
+                pomAscFile = signPom.signatureFiles[0]
+            }
+
+            artifacts {
+                //noinspection GroovyAssignabilityCheck
+                artifact jar
+                //noinspection GroovyAssignabilityCheck
+                artifact kotlinSourcesJar
+                //noinspection GroovyAssignabilityCheck
+                artifact javadocJar
+                // pom-default.xml.asc
+                pomAscFile
+            }
         }
     }
     repositories {
-        //
-        // repositories to publish to
-        //
         maven {
             name 'ossrh'
             url 'https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/'
@@ -115,7 +185,42 @@ publishing {
     }
 }
 
+/**
+ * configure signing plugin including(pom-default.xml, libs/jar)
+ */
+signing {
+    if (project.findProperty('signing.keyId') && project.findProperty('signing.password') && project.findProperty('signing.secretKeyRingFile')) {
+        sign publishing.publications.maven
+        sign configurations.archives
+    } else {
+        throw new ConfigurationException('No signing info found.')
+    }
+}
+
+/**
+ * sign pom-default.xml
+ */
+task signPomFile(type: Sign) {
+    sign project.file("$buildDir/publications/maven/pom-default.xml")
+    outputs.upToDateWhen { false }
+}
+
+/**
+ * add dependencies for publishToMavenLocal
+ */
+tasks.withType(PublishToMavenLocal) {
+    dependsOn project.tasks.javadocJar
+    dependsOn project.tasks.signArchives
+    dependsOn project.tasks.signMavenPublication
+}
+
+/**
+ * add dependencies for publishMavenPublicationToYourRepository
+ */
 tasks.withType(PublishToMavenRepository) {
+    dependsOn project.tasks.javadocJar
+    dependsOn project.tasks.signArchives
+    dependsOn project.tasks.signMavenPublication
     doFirst {
         if (!ossrhUsername) {
             throw new ConfigurationException('Please set the sonatype username with project property "ossrhUsername" ')
@@ -125,22 +230,12 @@ tasks.withType(PublishToMavenRepository) {
         }
     }
 }
-
-signing {
-    if (project.findProperty('signing.keyId') && project.findProperty('signing.password') && project.findProperty('signing.secretKeyRingFile')) {
-        sign configurations.archives
-
-        /* Uncomment this if you use shadow in your build process */
-        // sign configurations.shadow
-    } else {
-        throw new ConfigurationException('No signing info found.')
-    }
-}
 ```
 
 1. We change id 'java' to 'java-library' in the plugins section.
-2. We added 'maven-publish' and 'signing' plugins.
-3. We added the whole publishing section, which specified the publishing repository, and credentials info.
+2. We added 'maven-publish', 'signing', 'org.jetbrains.dokka' plugins.
+3. We tweaked the whole publishing section, which specified the publishing repository, and credentials info.
+4. The signing configuration should be treated carefully.
 
 ## II. Publish to mavenLocal
 We can publish the jar to mavenLocal for some integration test.
@@ -256,10 +351,16 @@ ossrhStagingProfileId=sonatype-staging-profile
 
 ### 5) Publish and check availabilities
 
-Navigate to [https://s01.oss.sonatype.org/](https://s01.oss.sonatype.org/) to check if the publication successfully.
+5.1 Navigate to [https://s01.oss.sonatype.org/](https://s01.oss.sonatype.org/) to check if the publication successfully.
+
+5.2 Once the contents has been published to the staging directory, use the close button for next.
+
+5.3 If closing successfully, you can use the release button to publish the package now.
+
+Check [https://central.sonatype.org/publish/release/#releasing-deployment-from-ossrh-to-the-central-repository-introduction](https://central.sonatype.org/publish/release/#releasing-deployment-from-ossrh-to-the-central-repository-introduction) for more information.
 
 ## IV. Check package availability
 
 Remove your exclusion in client build.gradle, now it's time to check if the jar is publicly available.
 
-You can further check other ways for sharing company-wide library packages.
+You can further check other ways for sharing organization-wide library packages.
