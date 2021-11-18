@@ -2,7 +2,7 @@
 title: Publish your shared library
 description: Packaging and Publish your jar to maven Central
 published: true
-date: 2021-11-16T11:51:35.562Z
+date: 2021-11-18T10:38:38.758Z
 tags: 
 editor: markdown
 dateCreated: 2021-11-15T19:00:10.866Z
@@ -158,7 +158,7 @@ publishing {
             }
 
             pom.withXml {
-                pomAscFile = signPom.signatureFiles[0]
+                pomAscFile = signPomFile.signatureFiles[0]
             }
 
             artifacts {
