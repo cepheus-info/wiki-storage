@@ -2,7 +2,7 @@
 title: Style guide
 description: 
 published: true
-date: 2022-04-22T05:27:29.625Z
+date: 2022-04-22T05:30:50.621Z
 tags: 
 editor: markdown
 dateCreated: 2022-04-22T05:27:29.625Z
@@ -370,3 +370,6 @@ public void doProcess() {
 ```
 上述思路是确保sendCommand到达其他服务时，当前服务内的事务是已提交成功的状态，这样我们可以分别保证各服务自身是一致的，而全局状态则是最终一致的。（当其他服务中发生不可恢复异常时，需要额外的补偿机制对数据状态进行回滚）。
 
+## 7. 单一职责原则
+
+应该有且仅有一个原因引起类的变更。
