@@ -2,7 +2,7 @@
 title: Style guide
 description: 
 published: true
-date: 2022-04-22T05:30:50.621Z
+date: 2022-04-22T05:32:07.913Z
 tags: 
 editor: markdown
 dateCreated: 2022-04-22T05:27:29.625Z
