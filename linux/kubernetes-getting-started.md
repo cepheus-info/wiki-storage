@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-06-27T08:19:40.530Z
+date: 2022-07-08T07:48:25.186Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -17,7 +17,7 @@ An example for Microk8s in openSUSE:
 ```bash
 # https://snapcraft.io/install/microk8s/opensuse
 # install snap
-sudo zypper addrepo --refresh https://download.opensuse.org/repositories/system:/snappy/openSUSE_Leap_15.2 snappy
+sudo zypper addrepo --refresh https://download.opensuse.org/repositories/system:/snappy/openSUSE_Tumbleweed snappy
 sudo zypper --gpg-auto-import-keys refresh
 sudo zypper dup --from snappy
 sudo zypper install snapd
