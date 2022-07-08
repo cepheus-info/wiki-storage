@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-07-08T07:48:25.186Z
+date: 2022-07-08T09:56:49.537Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -33,4 +33,26 @@ sudo snap install microk8s --classic
 ```
 Note that there might be an error occurring when start snapd service. You should first install any snaps so that the snapd would keep running in background.
 
+Install kubernetes-client
+```bash
+sudo zypper install kubernetes1.24-client
+```
+
 ## Install Helm
+You must have Kubernetes installed. For the latest release of Helm, we recommend the latest stable release of Kubernetes, which in most cases is the second-latest minor release.
+You should also have a local configured copy of kubectl.
+
+Install helm via snap
+```bash
+sudo snap install helm --classic
+```
+
+Install helm via package manager:
+```bash
+sudo zypper install helm
+```
+
+Initialize a Helm Chart Repository
+```bash
+helm repo add bitnami https://charts.bitnami.com/bitnami
+```
