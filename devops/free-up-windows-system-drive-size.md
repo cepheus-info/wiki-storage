@@ -2,7 +2,7 @@
 title: Free up Windows system drive size
 description: 
 published: true
-date: 2022-01-30T07:43:24.463Z
+date: 2022-08-13T13:53:24.246Z
 tags: 
 editor: markdown
 dateCreated: 2022-01-30T07:43:24.463Z
@@ -20,6 +20,7 @@ Turn on Windows feature `Hyper-V`
 Below steps need you to shutdown docker & wsl as well. You can use command like:
 ```shell
 wsl --terminate ubuntu-18.04
+wsl --shutdown
 ```
 
 Navigate to the vhdx path and open Powershell with Administrator Priviliges to execute command, a sample vhdx path here is C:\Users\your-user-name\AppData\Local\Docker\wsl\data
