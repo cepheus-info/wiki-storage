@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-17T08:22:46.753Z
+date: 2022-10-17T08:36:49.374Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -30,10 +30,48 @@ sudo systemctl enable snapd.apparmor
 sudo systemctl start snapd.apparmor
 # install microk8s:
 sudo snap install microk8s --classic
-# If microk8s command-not-found, please check if /snap/bin is in your PATH, otherwise run:
-export PATH="$PATH:/snap/bin"
+# check microk8s status
+microk8s status
 ```
+
+### Troubleshooting of microk8s
+
 Note that there might be an error occurring when start snapd service. You should first install any snaps so that the snapd would keep running in background.
+
+- If microk8s command-not-found, please check if /snap/bin is in your PATH, otherwise run
+  ```bash
+  # microk8s command-not-found
+  export PATH="$PATH:/snap/bin"
+  ```
+- If microk8s is not running
+```bash
+localhost:/ # microk8s inspect 
+Inspecting system
+Inspecting Certificates
+/snap/microk8s/4055/inspect.sh: line 386: openssl: command not found
+WARNING:  This deployments certificates will expire in $days days. 
+Either redeploy MicroK8s or attempt a refresh with "microk8s refresh-certs"
+Inspecting services
+Inspecting AppArmor configuration
+Gathering system information
+Inspecting kubernetes cluster
+  Inspect kubernetes cluster
+Inspecting dqlite
+  Inspect dqlite
+
+WARNING:  Docker is installed. 
+Add the following lines to /etc/docker/daemon.json: 
+{
+    "insecure-registries" : ["localhost:32000"] 
+}
+and then restart docker with: sudo systemctl restart docker
+WARNING:  The memory cgroup is not enabled. 
+The cluster may not be functioning properly. Please ensure cgroups are enabled 
+See for example: https://microk8s.io/docs/install-alternatives#heading--arm 
+Building the report tarball
+  Report tarball is at /var/snap/microk8s/4055/inspection-report-20221017_162601.tar.gz
+
+```
 
 Install kubernetes-client
 ```bash
