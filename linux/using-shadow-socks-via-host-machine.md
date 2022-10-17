@@ -2,7 +2,7 @@
 title: Using shadowsocks via host machine
 description: 
 published: true
-date: 2022-10-17T09:41:44.300Z
+date: 2022-10-17T09:53:20.657Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-17T09:25:25.169Z
