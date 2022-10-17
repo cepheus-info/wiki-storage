@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-17T09:21:35.929Z
+date: 2022-10-17T09:23:27.543Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -74,13 +74,9 @@ Note that there might be an error occurring when start snapd service. You should
 
 - Use kubernetes behind a proxy
 As checked journalctl, found there's a connection problem that access https://k8s.gcr.io failed. So we need to setup a VPN or Shadowsocks connection before we can start use it.
-```md
-虚拟机网络使用 NAT 桥接
-shadowsocks (Win) 打开 “允许来自外部的连接”
-在虚拟机和主机中查看 ip，终端命令如ip addr 或 ifconfig 或 ipconfig。
-虚拟机中 ip 形如 192.168.a.b，那么在主机中应该有名字中包含 vmware 的虚拟网络 ip 为 192.168.a.1。
-在虚拟机中代理选择 192.168.a.1，端口默认是 1080，协议 socks5。
-```
+
+An example is using shadowsocks via host machine inside vm.
+
 
 Install kubernetes-client
 ```bash
