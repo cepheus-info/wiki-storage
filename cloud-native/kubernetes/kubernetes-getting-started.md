@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-17T09:23:27.543Z
+date: 2022-10-17T09:32:09.460Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -75,8 +75,7 @@ Note that there might be an error occurring when start snapd service. You should
 - Use kubernetes behind a proxy
 As checked journalctl, found there's a connection problem that access https://k8s.gcr.io failed. So we need to setup a VPN or Shadowsocks connection before we can start use it.
 
-An example is using shadowsocks via host machine inside vm.
-
+	An example is using shadowsocks via host machine inside vm. Refer to [using shadowsocks via host machine](/en/linux/using-shadow-socks-via-host-machine) for more information.
 
 Install kubernetes-client
 ```bash
