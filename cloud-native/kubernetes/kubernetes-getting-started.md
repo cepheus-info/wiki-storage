@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-17T09:32:09.460Z
+date: 2022-10-17T09:54:43.890Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -42,6 +42,7 @@ Note that there might be an error occurring when start snapd service. You should
   ```bash
   # microk8s command-not-found
   export PATH="$PATH:/snap/bin"
+  echo 'export PATH="$PATH:/snap/bin"' >> ~/.bashrc
   ```
 - If microk8s is not running
   ```bash
