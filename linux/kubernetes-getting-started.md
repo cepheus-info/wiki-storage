@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-07-08T09:56:49.537Z
+date: 2022-10-17T08:22:46.753Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -30,6 +30,8 @@ sudo systemctl enable snapd.apparmor
 sudo systemctl start snapd.apparmor
 # install microk8s:
 sudo snap install microk8s --classic
+# If microk8s command-not-found, please check if /snap/bin is in your PATH, otherwise run:
+export PATH="$PATH:/snap/bin"
 ```
 Note that there might be an error occurring when start snapd service. You should first install any snaps so that the snapd would keep running in background.
 
