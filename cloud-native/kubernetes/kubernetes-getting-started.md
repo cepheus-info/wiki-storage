@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-24T10:16:00.485Z
+date: 2022-10-24T10:16:52.285Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -90,10 +90,11 @@ no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16
 
 ### Enable kubernetes dashboard addon
 ```bash
+# Enable dashboard service
 microk8s enable dashboard
-# show all kube services
+# Show all kube services
 microk8s kubectl get all --all-namespaces
-
+# Forward port to host machine
 microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
 ```
 
