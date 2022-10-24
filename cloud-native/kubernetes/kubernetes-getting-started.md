@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-18T03:57:35.264Z
+date: 2022-10-24T10:08:57.268Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -88,7 +88,12 @@ http_proxy=http://192.168.74.1:1080
 no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16
 ```
 
-Install kubernetes-client
+### Enable kubernetes dashboard addon
+```bash
+microk8s kubectl enable dashboard
+```
+
+## Install kubernetes-client
 ```bash
 sudo zypper install kubernetes1.24-client
 ```
