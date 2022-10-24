@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-24T10:10:03.430Z
+date: 2022-10-24T10:11:03.014Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -92,7 +92,7 @@ no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16
 ```bash
 microk8s enable dashboard
 
-kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
+microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:443
 ```
 
 ## Install kubernetes-client
