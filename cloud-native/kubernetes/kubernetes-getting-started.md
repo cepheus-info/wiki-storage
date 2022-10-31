@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-31T03:02:16.988Z
+date: 2022-10-31T05:02:39.862Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -99,8 +99,7 @@ microk8s kubectl port-forward -n kube-system service/kubernetes-dashboard 10443:
 ```
 
 ### Use nginx to forward kubernetes-dashboard
-As kubernetes-dashboard is using ssl, when we proxy_pass https://localhost:10443, we should configure nginx conf like below doc. 
-[Configure nginx to proxy https site]()
+As kubernetes-dashboard is using ssl, when we use a nginx server to proxy_pass https://localhost:10443, we should configure it like doc here: [configure-nginx-to-proxy-pass-https-site](/en/nginx/configure-nginx-to-proxy-pass-https-site).
 
 ## Install kubernetes-client
 ```bash
