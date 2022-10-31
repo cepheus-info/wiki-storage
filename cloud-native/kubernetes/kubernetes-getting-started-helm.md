@@ -1,8 +1,8 @@
 ---
-title: Getting started of kubernetes - helm
+title: Getting started of k8s - helm
 description: 
 published: true
-date: 2022-10-31T05:09:52.631Z
+date: 2022-10-31T05:10:50.425Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-31T05:04:51.391Z
