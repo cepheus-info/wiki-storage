@@ -2,7 +2,7 @@
 title: Getting started of k8s - helm
 description: 
 published: true
-date: 2022-10-31T06:26:05.796Z
+date: 2022-10-31T07:11:51.700Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-31T05:04:51.391Z
@@ -44,3 +44,20 @@ helm repo add bitnami https://charts.bitnami.com/bitnami
   # If not using microk8s, omit [microk8s]
   microk8s kubectl config view --raw > ~/.kube/config
   ```
+
+- Check connectivity
+
+Check status of svc
+```bash
+kubectl get svc --namespace default happy-panda-wordpress
+```
+
+Check svc's ip address for external access
+```bash
+kubectl get svc --namespace default happy-panda-wordpress -o jsonpath="{.spec.clusterIP}"
+```
+
+- Enable Loadbalancer for microk8s
+```bash
+microk8s enable metallb
+```
