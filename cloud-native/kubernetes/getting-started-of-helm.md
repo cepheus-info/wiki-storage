@@ -1,8 +1,8 @@
 ---
-title: Getting started of Helm
+title: Getting started of kubenetes - helm
 description: 
 published: true
-date: 2022-10-31T05:04:51.391Z
+date: 2022-10-31T05:05:53.300Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-31T05:04:51.391Z
