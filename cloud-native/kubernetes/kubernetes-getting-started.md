@@ -2,7 +2,7 @@
 title: Getting started of kubernetes
 description: 
 published: true
-date: 2022-10-31T05:03:30.522Z
+date: 2022-10-31T05:03:45.431Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -109,21 +109,3 @@ As kubernetes-dashboard is using ssl, when we use a nginx server to proxy_pass h
 sudo zypper install kubernetes1.24-client
 ```
 
-## Install Helm
-You must have Kubernetes installed. For the latest release of Helm, we recommend the latest stable release of Kubernetes, which in most cases is the second-latest minor release.
-You should also have a local configured copy of kubectl.
-
-Install helm via snap
-```bash
-sudo snap install helm --classic
-```
-
-Install helm via package manager:
-```bash
-sudo zypper install helm
-```
-
-Initialize a Helm Chart Repository
-```bash
-helm repo add bitnami https://charts.bitnami.com/bitnami
-```
