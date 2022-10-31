@@ -1,8 +1,8 @@
 ---
-title: Configure nginx to proxy https site
+title: Configure nginx to proxy pass https site
 description: 
 published: true
-date: 2022-10-31T04:57:39.156Z
+date: 2022-10-31T04:57:48.515Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-31T03:24:42.179Z
