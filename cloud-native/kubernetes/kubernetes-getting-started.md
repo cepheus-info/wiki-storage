@@ -1,8 +1,8 @@
 ---
-title: Getting started of kubernetes
+title: Getting started of k8s
 description: 
 published: true
-date: 2022-10-31T05:03:45.431Z
+date: 2022-10-31T05:10:28.193Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
