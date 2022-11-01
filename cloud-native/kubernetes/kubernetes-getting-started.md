@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-10-31T10:25:38.227Z
+date: 2022-11-01T08:37:03.236Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -116,5 +116,11 @@ sudo zypper install kubernetes1.24-client
 ### update kubectl config for microk8s
 ```bash
 microk8s kubectl config view --raw > ~/.kube/config
+```
+
+## Enable hostpath-storage
+The hostpath storage MicroK8s add-on can be used to easily provision PersistentVolumes backed by a host directory. 
+```bash
+microk8s enable hostpath-storage
 ```
 
