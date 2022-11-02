@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-01T08:37:03.236Z
+date: 2022-11-02T03:33:35.525Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -123,4 +123,20 @@ The hostpath storage MicroK8s add-on can be used to easily provision PersistentV
 ```bash
 microk8s enable hostpath-storage
 ```
+
+## Alternative container engine
+Sometimes we need to switch the used container engine of kubernetes. We can change below configuration:
+```bash
+vim /var/snap/microk8s/current/args/kubelet
+```
+	Change --container-runtime=docker from remote.
+  
+Then execute below command to restart microk8s.
+
+```bash
+microk8s stop
+
+microk8s start
+```
+Note that Kubernetes supports container runtimes such as containerd, CRI-O, and any other implementation of the Kubernetes CRI (Container Runtime Interface).
 
