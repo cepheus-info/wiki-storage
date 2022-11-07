@@ -2,8 +2,8 @@
 title: Free up Windows system drive size
 description: 
 published: true
-date: 2022-08-13T13:53:24.246Z
-tags: 
+date: 2022-11-07T06:47:58.449Z
+tags: shrink
 editor: markdown
 dateCreated: 2022-01-30T07:43:24.463Z
 ---
@@ -19,6 +19,7 @@ Restart computer.
 Turn on Windows feature `Hyper-V`
 Below steps need you to shutdown docker & wsl as well. You can use command like:
 ```shell
+wsl --list
 wsl --terminate ubuntu-18.04
 wsl --shutdown
 ```
