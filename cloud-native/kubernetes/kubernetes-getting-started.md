@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-02T03:53:39.212Z
+date: 2022-11-09T03:00:32.235Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -111,6 +111,13 @@ As kubernetes-dashboard is using ssl, when we use a nginx server to proxy_pass h
 ### Installation via package manager
 ```bash
 sudo zypper install kubernetes1.24-client
+```
+### Use microk8s kubectl as an alternative
+```bash
+# append this line inside your ~/.bash_aliases
+alias kubectl='microk8s kubectl'
+# if root account is disabled in your system, use below line instead
+alias kubectl='sudo microk8s kubectl'
 ```
 
 ### update kubectl config for microk8s
