@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-09T03:19:52.196Z
+date: 2022-11-09T04:27:53.478Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -83,10 +83,10 @@ Note that there might be an error occurring when start snapd service. You should
 ```bash
 HTTPS_PROXY=http://192.168.74.1:1080
 HTTP_PROXY=http://192.168.74.1:1080
-NO_PROXY=localhost,127.0.0.1
+NO_PROXY=localhost,machinename,127.0.0.1
 https_proxy=http://192.168.74.1:1080
 http_proxy=http://192.168.74.1:1080
-no_proxy=localhost,127.0.0.1
+no_proxy=localhost,machinename,127.0.0.1
 ```
 
 ### Enable kubernetes dashboard addon
