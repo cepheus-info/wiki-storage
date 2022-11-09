@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-09T04:27:53.478Z
+date: 2022-11-09T05:07:05.868Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -88,6 +88,7 @@ https_proxy=http://192.168.74.1:1080
 http_proxy=http://192.168.74.1:1080
 no_proxy=localhost,machinename,127.0.0.1
 ```
+## Enable addons
 
 ### Enable kubernetes dashboard addon
 The dashboard add-on can be used to monitor the whole kubernetes cluster, and can be accessed via port-forward or kube-proxy.
@@ -102,6 +103,17 @@ microk8s kubectl describe secret -n kube-system microk8s-dashboard-token
 microk8s enable dashboard
 # Show all kube services
 microk8s kubectl get all --all-namespaces
+```
+
+## Enable hostpath-storage
+The hostpath storage MicroK8s add-on can be used to easily provision PersistentVolumes backed by a host directory. 
+```bash
+microk8s enable hostpath-storage
+```
+
+## Enable dns, ingress, etc
+```bash
+microk8s enable dns ingress
 ```
 
 ### Forward port to host machine
@@ -128,12 +140,6 @@ alias kubectl='sudo microk8s kubectl'
 ### update kubectl config for microk8s
 ```bash
 microk8s kubectl config view --raw > ~/.kube/config
-```
-
-## Enable hostpath-storage
-The hostpath storage MicroK8s add-on can be used to easily provision PersistentVolumes backed by a host directory. 
-```bash
-microk8s enable hostpath-storage
 ```
 
 ## Alternative container engine
