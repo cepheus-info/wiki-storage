@@ -2,13 +2,23 @@
 title: Getting started of k8s - helm
 description: 
 published: true
-date: 2022-10-31T07:11:51.700Z
+date: 2022-11-09T05:08:59.360Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-31T05:04:51.391Z
 ---
 
 # Getting started of Helm
+
+## Use microk8s helm3 instead
+
+If you have microk8s enabled, then you already have a built in helm addon to use.
+
+You can create an alias in ~/.bash_aliases to avoid installing another instance of helm.
+```bash
+alias helm="microk8s helm3"
+```
+
 ## Install Helm
 You must have Kubernetes installed. For the latest release of Helm, we recommend the latest stable release of Kubernetes, which in most cases is the second-latest minor release.
 You should also have a local configured copy of kubectl.
