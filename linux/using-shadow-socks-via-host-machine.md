@@ -2,7 +2,7 @@
 title: Using shadowsocks as a proxy via host machine
 description: 
 published: true
-date: 2022-11-09T03:04:16.538Z
+date: 2022-11-09T04:27:12.336Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-17T09:25:25.169Z
@@ -20,7 +20,7 @@ ip address  | port | protocol
   ```conf
   HTTP_PROXY=http://192.168.a.1:1080
   HTTPS_PROXY=http://192.168.a.1:1080
-  NO_PROXY=localhost,127.0.0.1
+  NO_PROXY=localhost,machinename,127.0.0.1
   ```
   Note that the no_proxy only accepts extension rather than prefix. that means .com.cn is acceptable, neighter do www.google.
   So if we want to use NO_PROXY for all "IP Address" accessing, we can use below script to generate all numbers in {0..255}, and then paste the result into NO_PROXY value place.
