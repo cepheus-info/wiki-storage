@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-09T03:12:35.199Z
+date: 2022-11-09T03:17:02.844Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -124,6 +124,20 @@ alias kubectl='sudo microk8s kubectl'
 ### update kubectl config for microk8s
 ```bash
 microk8s kubectl config view --raw > ~/.kube/config
+```
+
+## Enable dashboard
+The dashboard add-on can be used to monitor the whole kubernetes cluster, and can be accessed via port-forward or kube-proxy.
+```bash
+microk8s enable dashboard
+```
+
+You can access dashboard with access token if you have not enabled rbac.
+```bash
+# Create default token
+microk8s kubectl create token default
+# Retrieve token
+microk8s kubectl describe secret -n kube-system microk8s-dashboard-token
 ```
 
 ## Enable hostpath-storage
