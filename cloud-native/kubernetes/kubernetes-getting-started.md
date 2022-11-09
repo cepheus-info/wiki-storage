@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-09T03:00:32.235Z
+date: 2022-11-09T03:12:35.199Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -79,13 +79,14 @@ Note that there might be an error occurring when start snapd service. You should
 	An example is using shadowsocks via host machine inside vm. Refer to [using shadowsocks via host machine](/en/linux/using-shadow-socks-via-host-machine) for more information.
   
   And next we need to configure http_proxy correctly in /etc/environment
+  Note that currently CIDR format for NO_PROXY is not accepted, because it treats the values as domain suffix.(.com.cn, etc). But a single number can be used.
 ```bash
 HTTPS_PROXY=http://192.168.74.1:1080
 HTTP_PROXY=http://192.168.74.1:1080
-NO_PROXY=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16
+NO_PROXY=localhost,127.0.0.1
 https_proxy=http://192.168.74.1:1080
 http_proxy=http://192.168.74.1:1080
-no_proxy=10.0.0.0/8,192.168.0.0/16,127.0.0.1,172.16.0.0/16
+no_proxy=localhost,127.0.0.1
 ```
 
 ### Enable kubernetes dashboard addon
