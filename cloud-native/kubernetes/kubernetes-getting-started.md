@@ -2,7 +2,7 @@
 title: Getting started of k8s
 description: 
 published: true
-date: 2022-11-09T05:07:05.868Z
+date: 2022-11-09T05:50:38.134Z
 tags: 
 editor: markdown
 dateCreated: 2022-06-27T08:19:40.530Z
@@ -111,7 +111,7 @@ The hostpath storage MicroK8s add-on can be used to easily provision PersistentV
 microk8s enable hostpath-storage
 ```
 
-## Enable dns, ingress, etc
+## Enable dns, ingress, metalb, etc
 ```bash
 microk8s enable dns ingress
 ```
