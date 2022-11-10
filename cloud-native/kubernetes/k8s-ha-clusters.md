@@ -1,14 +1,14 @@
 ---
-title: Setup Highly Available Kubernetes Clusters
+title: Kubernetes Highly Available Clusters
 description: 
 published: true
-date: 2022-11-10T04:03:21.885Z
+date: 2022-11-10T06:58:00.096Z
 tags: 
 editor: markdown
 dateCreated: 2022-11-10T03:58:47.798Z
 ---
 
-# Setup Kubernetes Highly Available Clusters
+# Kubernetes Highly Available Clusters
 
 ## Overview
 
