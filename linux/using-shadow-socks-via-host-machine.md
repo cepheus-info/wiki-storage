@@ -2,7 +2,7 @@
 title: Using shadowsocks as a proxy via host machine
 description: 
 published: true
-date: 2022-11-10T10:29:15.970Z
+date: 2022-11-10T10:34:59.773Z
 tags: 
 editor: markdown
 dateCreated: 2022-10-17T09:25:25.169Z
