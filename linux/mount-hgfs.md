@@ -2,7 +2,7 @@
 title: Mount hgfs for vmware linux shared folder
 description: 
 published: true
-date: 2022-11-22T05:24:48.694Z
+date: 2022-11-22T05:25:19.059Z
 tags: 
 editor: markdown
 dateCreated: 2022-08-23T06:51:11.165Z
@@ -35,7 +35,7 @@ tar zvxf /mnt/cdrom/VMwareTools-10.3.23-16594550.tar.gz
 ```bash
 # Execute install command
 cd vmware-tools-distrib
-./vmware-install.pl
+sudo ./vmware-install.pl
 ```
 
 Note that you should install insserv-compat before vmware-install if you are running a SUSE distribution.
