@@ -2,7 +2,7 @@
 title: Mount hgfs for vmware linux shared folder
 description: 
 published: true
-date: 2022-11-22T05:22:49.176Z
+date: 2022-11-22T05:24:48.694Z
 tags: 
 editor: markdown
 dateCreated: 2022-08-23T06:51:11.165Z
@@ -40,6 +40,7 @@ cd vmware-tools-distrib
 
 Note that you should install insserv-compat before vmware-install if you are running a SUSE distribution.
 ```bash
+# Search insserv-compat via https://software.opensuse.org/ and then find the repository
 # zypper add repository
 sudo zypper ar -r https://download.opensuse.org/repositories/home:/alveus:/depository/openSUSE_Tumbleweed/home:alveus:depository.repo
 # zypper install
